@@ -10,7 +10,6 @@ BOT_TOKEN = getenv("BOT_TOKEN", "")
 API_ID = getenv("API_ID", "")
 API_HASH = getenv("API_HASH", "")
 DOWNLOAD_PATH = getenv("DL_PATH", "./downloads")
-TARGET_CHAT_ID= getenv("TARGET_CHAT_ID", "827128705")
 
 app = Client("banana_yt", bot_token=BOT_TOKEN, api_id=API_ID, api_hash=API_HASH)
 yt_opts = {
@@ -38,6 +37,6 @@ async def download_yt(client: Client, message: Message):
     ydl.download(url)
     filename = ydl.prepare_filename(ydl.extract_info(url))
     await message.reply("download ended")
-    await message.reply_video(video=open("./downloads/Firelake - Live To Forget (S.T.A.L.K.E.R.： Зов Припяти OST).mp4", 'rb'))
+    await message.reply_video(video=open(filename, 'rb'))
 
 app.run()
